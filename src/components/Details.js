@@ -7,12 +7,6 @@ function Details({dispatch}) {
 
     const {detailedProduct} = useContext(Context)
 
-    let [cartBtn, setCartBtn] = useState(detailedProduct.detailedProduct.inCart? true : false)
-
-    function toggleCartBtn() {
-        setCartBtn(cartBtn = true)  
-    }
-
     return (
 
 
@@ -52,12 +46,11 @@ function Details({dispatch}) {
                         <button 
                         className='details-btn-cart'
                         onClick={() => {
-                            toggleCartBtn();
                             dispatch({
                             type: 'addToCart',
                             payload: detailedProduct.detailedProduct.id});
                         }}>
-                            {cartBtn ? 'В Корзине!':'Добавить в корзину'}
+                            {detailedProduct.detailedProduct.inCart ? 'В Корзине!':'Добавить в корзину'}
                         </button>
                     </div>
                 </div>

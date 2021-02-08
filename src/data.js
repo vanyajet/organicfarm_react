@@ -376,7 +376,6 @@ export const storeProducts = [
 ];
 
 export const detailProduct = {
-  detailedProduct: {
   id: 1,
   title: "Микрозелень Подсолнух",
   group: 'micro',
@@ -403,9 +402,4 @@ export const detailProduct = {
   inCart: false,
   count: 0,
   total: 0
-  }
 }
-
-export let cartProducts = [
-
-]

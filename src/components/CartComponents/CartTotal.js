@@ -1,13 +1,14 @@
 import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
 import { Context } from '../../context'
+import PropTypes from 'prop-types'
 import useModal from '../../useModal'
 import CheckOutModal from './CheckOutModal'
 
 
-function CartTotal() {
+function CartTotal({dispatch}) {
 
-    const {cartTotal, clearCart} = useContext(Context)
+    const {cartTotal} = useContext(Context)
 
     
     const {isShowing, toggle} = useModal()
@@ -21,7 +22,11 @@ function CartTotal() {
                             <button 
                                 className='btn btn-outline-danger text-uppercase mb-3 px-5' 
                                 type='button'
-                                onClick={() => clearCart()}
+                                onClick={() => {
+                                    dispatch({
+                                        type: 'clearCart'
+                                    })
+                                }}
                             >
                                 Очистить корзину
                             </button>
@@ -48,6 +53,12 @@ function CartTotal() {
             </div>
         </React.Fragment>
     )
+}
+CartTotal.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    cartTotalFunc: PropTypes.func.isRequired,
+    toggle: PropTypes.func.isRequired,
+    isShowing: PropTypes.bool.isRequired
 }
 
 export default CartTotal

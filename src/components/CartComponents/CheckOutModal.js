@@ -81,8 +81,8 @@ function CheckOutModal({ isShowing, hide }) {
 
 }
 CheckOutModal.propTypes = {
-  isShowing: PropTypes.arrayOf(PropTypes.bool).isRequired,
-  hide: PropTypes.objectOf(PropTypes.func).isRequired
+  isShowing: PropTypes.bool.isRequired,
+  hide: PropTypes.func.isRequired
 }
 
 export default CheckOutModal

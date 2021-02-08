@@ -2,20 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import CartItem from './CartItem'
 
-function CartList({data, functions}){
+function CartList({state, dispatch}){
     return (
         <div className="container-fluid">
-            {data.map(product => {
-                return <CartItem key={product.id} product={product} functions={functions}/>
-            })}
-            
+            {state.map(product => {
+                if (product.inCart) {
+                return <CartItem key={product.id} product={product} dispatch={dispatch}/>
+                }
+            })} 
         </div>
-        
     )
 }
 CartList.propTypes = {
-    data: PropTypes.arrayOf(PropTypes.object).isRequired,
-    functions: PropTypes.objectOf(PropTypes.func).isRequired
+    state: PropTypes.arrayOf(PropTypes.object).isRequired,
+    dispatch: PropTypes.func.isRequired
 }
 
 export default CartList

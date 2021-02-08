@@ -4,10 +4,9 @@ import {Link} from 'react-router-dom'
 import { Context } from '../../context'
 
 
-function CartItem({product, functions}) {
-    const {increment, decrement, removeFromCart} = functions
+function CartItem({product, dispatch}) {
     
-    const {handleDetail} = useContext(Context)
+    const {handleDetail, cartTotalFunc} = useContext(Context)
 
     return (
         <React.Fragment>
@@ -35,15 +34,40 @@ function CartItem({product, functions}) {
             <div className="col-10 mx-auto col-lg-2 cart-item-text">
                 <div className="d-flex justify-content-center">
                     <div>
-                        <span className="btn btn-dark" onClick={() => decrement(product.id)}>-</span>
+                        <span className="btn btn-dark" 
+                            onClick={() => {
+                                dispatch({
+                                    type: 'decrement',
+                                    payload: product.id
+                                })
+                                cartTotalFunc()
+                            }}
+                        >-</span>
                         <span className='btn btn-dark mx-1'>{product.count}</span>
-                        <span className="btn btn-dark" onClick={() => increment(product.id)}>+</span>
+                        <span className="btn btn-dark" 
+                            onClick={() => {
+                                dispatch({
+                                    type: 'increment',
+                                    payload: product.id
+                                })
+                                cartTotalFunc()
+                            }}
+                        >+</span>
 
                     </div>
                 </div>
             </div>
             <div className="col-10 mx-auto col-lg-2 cart-item-text">
-                <div className="cart-icon" onClick={() => removeFromCart(product.id)} >
+                <div 
+                    className="cart-icon" 
+                    onClick={() => {
+                        dispatch({
+                            type: 'removeFromCart',
+                            payload: product.id
+                        })
+                        cartTotalFunc()
+                    }} 
+                >
                     <i className="fas fa-trash"></i>
                 </div>
             </div>
@@ -67,7 +91,8 @@ CartItem.propTypes = {
         total: PropTypes.number.isRequired,
         inCart: PropTypes.bool.isRequired
     }), 
-    functions: PropTypes.objectOf(PropTypes.func).isRequired
+    dispatch: PropTypes.func.isRequired,
+    cartTotalFunc: PropTypes.func.isRequired
 }
 
 export default CartItem

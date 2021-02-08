@@ -1,11 +1,10 @@
-/* eslint-disable import/no-anonymous-default-export */
-
-export default function(state, action) {
+export default function (state, action) {
 
 
     switch (action.type){
+
         case 'addToCart':
-            state.map(product => {
+            return state.map(product => {
                 if (product.id === action.payload){
                     product.inCart = true
                     if (product.inCart){
@@ -15,9 +14,52 @@ export default function(state, action) {
                 }
                 return product
             })
-            return state
+
+        case 'increment':
+            return state.map(product => {
+                if (product.id === action.payload) {
+                    product.count += 1
+                    product.total = product.count * product.price
+                    return product
+                } return product
+            })
+
+        case 'decrement':
+            return state.map(product => {
+                if (product.id === action.payload) {
+                    if (product.count === 1) {
+                        product.inCart = false
+                        product.count = 0
+                        product.total = 0
+                        return product
+                    } else {
+                        product.count -= 1
+                        return product
+                    }
+                }
+                return product
+            })
+
+        case 'removeFromCart':
+            return state.map(product => {
+                if (product.id === action.payload) {
+                    product.inCart = false
+                    product.count = 0
+                    product.total = 0
+                    return product
+                }
+                return product
+            })
+        
+        case 'clearCart':
+            state.forEach(product => {
+                product.inCart = false
+                product.count = 0
+                product.total = 0
+            })
+
         default:
             return state
+            
     }
 }
-

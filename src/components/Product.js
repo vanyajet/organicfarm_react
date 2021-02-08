@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useContext} from 'react'
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Context} from '../context'
@@ -6,12 +6,7 @@ import {Context} from '../context'
 
 function Product({product, dispatch}) {
 
-    let [cartBtn, setCartBtn] = useState(product.inCart? true : false)
-
-    function toggleCartBtn() {
-        setCartBtn(cartBtn = !cartBtn)  
-    }
-    const {handleDetail, pushToCart} = useContext(Context)
+    const {handleDetail} = useContext(Context)
 
     return (
         <div className='product-wrapper col-10 col-md-6 col-lg-4 my-3' >
@@ -31,26 +26,16 @@ function Product({product, dispatch}) {
                     className='cart-btn'
                     disabled={product.inCart ? true : false}
                     onClick={() => {
-                        toggleCartBtn();
                         dispatch({
-                        type: 'addToCart',
-                        payload: product.id});
-                        pushToCart();
+                            type: 'addToCart',
+                            payload: product.id
+                        })
                     }}
                     >
-                        {(cartBtn || product.inCart) ? 
+                        {(product.inCart) ? 
                         (<p 
-                            className='text-capitalize mb-0'
-                            disabled={product.inCart ? false : true}
-                            onClick={() => {
-                                toggleCartBtn();
-                                dispatch({
-                                type: 'addToCart',
-                                payload: product.id});
-                                }} 
-                            
-                        >
-                        В корзине!</p>) : (<i area-hidden={(cartBtn || product.inCart) ? 'false' : 'true'} className='fas fa-cart-plus'/>)
+                            className='text-capitalize mb-0'>
+                        В корзине!</p>) : (<i area-hidden={(product.inCart) ? 'false' : 'true'} className='fas fa-cart-plus'/>)
                         }
                     </button>
                 </div>

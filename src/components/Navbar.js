@@ -5,7 +5,7 @@ import logo from '../favicon.ico'
 
 function Navbar() {
 
-    const {pushToCart, cartTotalFunc} = useContext(Context)
+    const {state, dispatch, cartTotalFunc} = useContext(Context)
 
     let [classes, setClasses] = useState(false)
 
@@ -38,13 +38,14 @@ function Navbar() {
                             О нас
                         </Link>
                     </li>
+                    <li>
+                        <button onClick={() => console.log(state)}>Показать стейт</button>
+                    </li>
                 </ul>
                         
                 <Link to='/cart' className='ml-auto'>
-                    <button onClick={() => {
-                        pushToCart();
-                        cartTotalFunc()
-                        }} className='cart-button'>
+                    <button onClick={() => cartTotalFunc()}
+                        className='cart-button'>
                         <span>
                             <i className="fas fa-cart-plus"/>
                         </span>
@@ -83,10 +84,7 @@ function Navbar() {
                     </div>
                 </div>
                 <Link to='/cart' className='ml-auto'>
-                    <button onClick={() => {
-                        pushToCart();
-                        cartTotalFunc()
-                        }} className='cart-button'>
+                    <button onClick={() => cartTotalFunc()} className='cart-button'>
                         <span>
                             <i className="fas fa-cart-plus"/>
                         </span>
