@@ -7,7 +7,7 @@ function CartList({state, dispatch}){
         <div className="container-fluid">
             {state.map(product => {
                 if (product.inCart) {
-                return <CartItem key={product.id} product={product} dispatch={dispatch}/>
+                    return <CartItem key={product.id} product={product} dispatch={dispatch}/>
                 }
             })} 
         </div>

@@ -1,10 +1,8 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import Title from './Title'
 import CartColumns from './CartComponents/CartColumns'
 import CartTotal from './CartComponents/CartTotal' 
-import {Context} from '../context'
 import CartList from './CartComponents/CartList'
-import Product from './Product'
 
 
 function Cart({state, dispatch}) {

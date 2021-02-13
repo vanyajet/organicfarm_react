@@ -10,6 +10,7 @@ body {
   font-family: 'Bitter', serif !important;
   background: var(--mainWhite) !important;
   color: var(--mainDark) !important;
+  overflow-x: hidden !important;
 }
 /* Loader Start */
 .lds-ellipsis {
@@ -87,6 +88,7 @@ body {
 }
 .navbar {
   background-color: var(--mainGreen);
+  justify-content: space
 }
 .nav-link {
   color: var(--mainWhite) !important;
@@ -184,14 +186,6 @@ body {
 @media (min-width: 768px){
   .fa-cart-plus:before {
     margin-right: 7px;
-  }
-}
-@media (max-width: 425px){
-  .cart-button:focus {
-    margin-right: 16px;
-  }
-  .cart-button {
-    margin-right: 16px;
   }
 }
 .cart-button:hover {

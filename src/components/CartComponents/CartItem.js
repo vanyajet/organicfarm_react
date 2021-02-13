@@ -92,7 +92,7 @@ CartItem.propTypes = {
         inCart: PropTypes.bool.isRequired
     }), 
     dispatch: PropTypes.func.isRequired,
-    cartTotalFunc: PropTypes.func.isRequired
+    cartTotalFunc: PropTypes.func
 }
 
 export default CartItem

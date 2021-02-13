@@ -56,9 +56,9 @@ function CartTotal({dispatch}) {
 }
 CartTotal.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    cartTotalFunc: PropTypes.func.isRequired,
-    toggle: PropTypes.func.isRequired,
-    isShowing: PropTypes.bool.isRequired
+    cartTotalFunc: PropTypes.func,
+    toggle: PropTypes.func,
+    isShowing: PropTypes.bool
 }
 
 export default CartTotal

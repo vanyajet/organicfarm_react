@@ -18,11 +18,23 @@ const About = React.lazy(() => import('./components/About'))
 
 function App() {
 
-  const [state, dispatch] = useReducer(reducer, storeProducts)
+  const [state, dispatch] = useReducer(reducer, storeProducts, () => {
+    const localData = localStorage.getItem('state')
+    if (localData) {
+      return JSON.parse(localData)
+    }
+  })
 
   let [detailedProduct, setDetailedProduct] = useState(detailProduct)
 
   let [cartTotal, setCartTotal] = useState(0)
+
+  useEffect(() => {
+    const localCartTotal = localStorage.getItem('cartTotal')
+    if (localCartTotal) {
+      setCartTotal(JSON.parse(localCartTotal))
+    }
+  }, [])
 
 
   const cartTotalFunc = () => {
@@ -43,6 +55,11 @@ function App() {
     setDetailedProduct(() => {
       return {detailedProduct:product}})
   }
+
+  useEffect(() => {
+    localStorage.setItem('state', JSON.stringify(state))
+    localStorage.setItem('cartTotal', JSON.stringify(cartTotal))
+  }, [state, cartTotal])
 
   return (
     <Context.Provider value={{

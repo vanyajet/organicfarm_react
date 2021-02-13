@@ -1,4 +1,4 @@
-export default function (state, action) {
+export default function reducer (state, action) {
 
 
     switch (action.type){
@@ -57,6 +57,7 @@ export default function (state, action) {
                 product.count = 0
                 product.total = 0
             })
+            localStorage.setItem('state', JSON.stringify(state))
 
         default:
             return state
