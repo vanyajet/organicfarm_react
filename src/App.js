@@ -29,19 +29,13 @@ function App() {
 
   let [cartTotal, setCartTotal] = useState(0)
 
-  useEffect(() => {
-    const localCartTotal = localStorage.getItem('cartTotal')
-    if (localCartTotal) {
-      setCartTotal(JSON.parse(localCartTotal))
-    }
-  }, [])
-
 
   const cartTotalFunc = () => {
     let total = 0
     state.map(product => {
       if (product.total > 0) {
         total += product.total
+        return total
       }
       return total
     })
@@ -49,6 +43,10 @@ function App() {
       return {cartTotal:total}
     })
   }
+
+  useEffect(() => {
+    cartTotalFunc()
+  }, [state])
 
   const handleDetail = (id) => {
     const product = state.find(item => item.id === id)
@@ -58,8 +56,7 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('state', JSON.stringify(state))
-    localStorage.setItem('cartTotal', JSON.stringify(cartTotal))
-  }, [state, cartTotal])
+  })
 
   return (
     <Context.Provider value={{

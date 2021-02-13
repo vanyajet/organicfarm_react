@@ -1,11 +1,8 @@
-import React, {useState, useContext} from 'react'
+import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
-import { Context } from '../context'
 import logo from '../favicon.ico'
 
 function Navbar() {
-
-    const {cartTotalFunc} = useContext(Context)
 
     let [classes, setClasses] = useState(false)
 
@@ -41,8 +38,7 @@ function Navbar() {
                 </ul>
                         
                 <Link to='/cart' className='ml-auto'>
-                    <button onClick={() => cartTotalFunc()}
-                        className='cart-button'>
+                    <button className='cart-button'>
                         <span>
                             <i className="fas fa-cart-plus"/>
                         </span>
@@ -81,7 +77,7 @@ function Navbar() {
                     <img src={logo} alt='Любимые Овощи' className='navbar-brand logo'/>
                 </Link>
                 <Link to='/cart'>
-                    <button onClick={() => cartTotalFunc()} className='cart-button'>
+                    <button className='cart-button'>
                         <span>
                             <i className="fas fa-cart-plus"/>
                         </span>

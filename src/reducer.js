@@ -34,6 +34,7 @@ export default function reducer (state, action) {
                         return product
                     } else {
                         product.count -= 1
+                        product.total = product.count * product.price
                         return product
                     }
                 }
@@ -57,7 +58,7 @@ export default function reducer (state, action) {
                 product.count = 0
                 product.total = 0
             })
-            localStorage.setItem('state', JSON.stringify(state))
+
 
         default:
             return state

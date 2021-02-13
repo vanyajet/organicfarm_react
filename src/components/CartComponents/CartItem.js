@@ -6,7 +6,7 @@ import { Context } from '../../context'
 
 function CartItem({product, dispatch}) {
     
-    const {handleDetail, cartTotalFunc} = useContext(Context)
+    const {handleDetail} = useContext(Context)
 
     return (
         <React.Fragment>
@@ -39,8 +39,7 @@ function CartItem({product, dispatch}) {
                                 dispatch({
                                     type: 'decrement',
                                     payload: product.id
-                                })
-                                cartTotalFunc()
+                                });
                             }}
                         >-</span>
                         <span className='btn btn-dark mx-1'>{product.count}</span>
@@ -49,8 +48,7 @@ function CartItem({product, dispatch}) {
                                 dispatch({
                                     type: 'increment',
                                     payload: product.id
-                                })
-                                cartTotalFunc()
+                                });
                             }}
                         >+</span>
 
@@ -64,8 +62,7 @@ function CartItem({product, dispatch}) {
                         dispatch({
                             type: 'removeFromCart',
                             payload: product.id
-                        })
-                        cartTotalFunc()
+                        });
                     }} 
                 >
                     <i className="fas fa-trash"></i>
